@@ -4,10 +4,9 @@ set -eo pipefail
 
 SERVICES=" -f nginx.yml -f whoami.yml"
 
-function _ssl(){
+function generate_ssl(){
   echo "Generate Certificates from Letsencrypt.."
   export WORKSPACE=$(git rev-parse --show-toplevel)
-  source ".env"
   source "src/load.bash"
   generate_ssl_certificate_from_letsencrypt
 }
@@ -24,12 +23,14 @@ function help(){
     return 1
 }
 
+source "config/ssl"
+
 opt="$1"
 choice=$( tr '[:upper:]' '[:lower:]' <<<"$opt" )
 case $choice in
     up)
       echo "Bring Up Application Stack"
-      _ssl
+      generate_ssl
       docker-compose ${SERVICES} up -d 
       echo "Goto following Links  "
       echo "https://${SUB_DOMAIN}          ->  Site with HTTPS support"
@@ -50,7 +51,7 @@ case $choice in
       tail -f logs/nginx/*.log
       ;;
     ssl)
-      _ssl
+      generate_ssl
       ;;
     *)  help ;;
 esac

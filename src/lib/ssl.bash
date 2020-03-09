@@ -6,7 +6,7 @@ function generate_ssl_certificate_from_letsencrypt(){
       -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
       -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
       -e EMAIL="${EMAIL}" \
-      -e DOMAINS="${BASE_DOMAIN}" \
+      -e DOMAINS="${BASE_DOMAIN},${SUB_DOMAIN}" \
       -e USE_STAGING_SERVER="${USE_STAGING_SERVER}" \
       rajasoun/certbot-dns-route53:latest
 

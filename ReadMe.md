@@ -15,13 +15,14 @@ If you are the first timer, pls
 Open Terminal 
 
 ```
-cp .env_template .env
+cp config/ssl_template config/ssl
 ```
 
-Populate the value in .env 
+Populate the value in ssl
 
 * EMAIL                   -> Valid Email ID
-* BASE_DOMAIN             -> Base Domain that you have the ownership in AWS 
+* BASE_DOMAIN             -> Base Domain that you have the ownership in AWS (example: dev.io)
+* SUB_DOMAIN              -> Sub domain that requires SSL certificate (nginx.dev.io)
 * AWS_ACCESS_KEY_ID       -> AWS Access Key
 * AWS_SECRET_ACCESS_KEY   -> AWS Secret Key
 

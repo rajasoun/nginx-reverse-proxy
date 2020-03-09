@@ -12,8 +12,3 @@ services:
     ports:
       - 80:80
       - 443:443
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`nginx.${BASE_DOMAIN}`)"
-      - "traefik.http.routers.nginx.entrypoints=websecure"
-      - "traefik.http.routers.nginx.tls.certresolver=bizapps"
